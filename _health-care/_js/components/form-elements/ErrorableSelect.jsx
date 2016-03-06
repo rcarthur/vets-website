@@ -8,19 +8,18 @@ import _ from 'lodash';
  * `errorMessage` - Error string to display in the component.
  *                  When defined, indicates input has a validation error.
  * `label` - String for the input field label.
- * `placeholder` - placeholder string for input field.
  * `required` - boolean. Render marker indicating field is required.
- * `value` - string. Value of the input field.
+ * `value` - string. Selected option.
  * `onValueChange` - a function with this prototype: (newValue)
  */
-class ErrorableTextInput extends React.Component {
+class ErrorableSelect extends React.Component {
   constructor() {
     super();
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillMount() {
-    this.inputId = _.uniqueId('errorable-text-input-');
+    this.selectId = _.uniqueId('errorable-select-');
   }
 
   handleChange(domEvent) {
@@ -32,7 +31,7 @@ class ErrorableTextInput extends React.Component {
     let errorSpan = '';
     let errorSpanId = undefined;
     if (this.props.errorMessage) {
-      errorSpanId = `${this.inputId}-error-message`;
+      errorSpanId = `${this.selectId}-error-message`;
       errorSpan = <span className="usa-input-error-message" id={`${errorSpanId}`}>{this.props.errorMessage}</span>;
     }
 
@@ -41,35 +40,56 @@ class ErrorableTextInput extends React.Component {
     if (this.props.required) {
       requiredSpan = <span className="usa-additional_text">Required</span>;
     }
+    let reactKey = 0;
+    const optionElements = this.props.options.map((obj) => {
+      let label;
+      let value;
+      if (_.isString(obj)) {
+        label = obj;
+        value = obj;
+      } else {
+        label = obj.label;
+        value = obj.value;
+      }
+      return <option key={++reactKey} value={value}>{label}</option>;
+    });
 
     return (
       <div className={this.props.errorMessage ? 'usa-input-error' : undefined}>
         <label
             className={this.props.errorMessage ? 'usa-input-error-label' : undefined}
-            htmlFor={this.inputId}>
+            htmlFor={this.selectId}>
               {this.props.label}
               {requiredSpan}
         </label>
         {errorSpan}
-        <input
+        <select
             aria-describedby={errorSpanId}
-            id={this.inputId}
-            placeholder={this.props.placeholder}
-            type="text"
+            id={this.selectId}
             value={this.props.value}
-            onChange={this.handleChange}/>
+            onSelect={this.handleChange}>
+          <option value=""></option>
+          {optionElements}
+        </select>
       </div>
     );
   }
 }
 
-ErrorableTextInput.propTypes = {
+ErrorableSelect.propTypes = {
   errorMessage: React.PropTypes.string,
   label: React.PropTypes.string.isRequired,
-  placeholder: React.PropTypes.string,
+  options: React.PropTypes.arrayOf(
+    React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.shape({
+        label: React.PropTypes.string,
+        value: React.PropTypes.string }),
+    ])).isRequired,
   required: React.PropTypes.bool,
   value: React.PropTypes.string,
   onValueChange: React.PropTypes.func.isRequired,
 };
 
-export default ErrorableTextInput;
+export default ErrorableSelect;
+

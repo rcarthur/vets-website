@@ -1,9 +1,11 @@
 import React from 'react';
 
 import DateInput from '../form-elements/DateInput';
+import ErrorableSelect from '../form-elements/ErrorableSelect';
 import FullName from './FullName';
 import Gender from './Gender';
 import MothersMaidenName from './MothersMaidenName';
+import SelectOptions from '../../data/SelectOptions';
 import SocialSecurityNumber from './SocialSecurityNumber';
 import State from './State';
 
@@ -51,14 +53,11 @@ class NameAndGeneralInfoSection extends React.Component {
           </div>
           <div className="row">
             <div className="small-12 columns">
-              <label htmlFor="veteran_marital_status">Current Martial Status</label>
-              <select name="veteran[marital_status]" >
-                <option value=""></option>
-                <option value="Married">Married</option>
-                <option value="Never Married">Never Married</option>
-                <option value="Separated">Separated</option>
-                <option value="Widowed">Widowed</option>
-                <option value="Divorced">Divorced</option></select>
+              <ErrorableSelect
+                  label="Current Martial Status"
+                  options={SelectOptions.MaritalStatus}
+                  value={this.props.data.maritalStatus}
+                  onValueChange={(update) => {this.props.onStateChange('maritalStatus', update);}}/>
             </div>
           </div>
         </fieldset>
