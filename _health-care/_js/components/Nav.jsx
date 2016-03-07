@@ -7,13 +7,13 @@ class Nav extends React.Component {
     // TODO(akainic): change this check once the alias for introduction has been changed
     return (
       <ul className="usa-sidenav-list">
-        <li className={`tab-title${this.props.currentUrl === '/' || this.props.currentUrl === '/introduction' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/introduction" 
               className={this.props.currentUrl === '/' || this.props.currentUrl === '/introduction' ? ' usa-current' : ''}>
             Introduction
           </Link>
         </li>
-        <li className={`tab-title${this.props.currentUrl === '/personal-information' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/personal-information" 
               className={this.props.currentUrl === '/personal-information' ? ' usa-current' : ''}>
             Personal Information
@@ -26,17 +26,17 @@ class Nav extends React.Component {
             <li>Veteran Address</li>
           </ul>
         </li>
-        <li className={`tab-title${this.props.currentUrl === '/insurance-information' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/insurance-information" 
               className={this.props.currentUrl === '/insurance-information' ? ' usa-current' : ''}>
             Insurance Information
           </Link>
-          <ul className="usa-sidenav-sub_list">
+          <ul className={`usa-sidenav-sub_list${this.props.currentUrl === '/insurance-information' ? ' active' : ''}`}>
             <li>General Insurance Information</li>
             <li>Medicare/Medicaid Information</li>
           </ul>
         </li>
-        <li className={`tab-title${this.props.currentUrl === '/military-service' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/military-service" 
               className={this.props.currentUrl === '/military-service' ? ' usa-current' : ''}>
             Military Service
@@ -46,13 +46,13 @@ class Nav extends React.Component {
             <li>Additional Military Information</li>
           </ul>
         </li>
-        <li className={`tab-title${this.props.currentUrl === '/financial-asssessment' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/financial-assessment" 
-              className={this.props.currentUrl === '/financial-asssessment' ? ' usa-current' : ''}>
+              className={this.props.currentUrl === '/financial-assessment' ? ' usa-current' : ''}>
             Financial Assessment
           </Link>
         </li>
-        <li className={`tab-title${this.props.currentUrl === '/review-and-submit' ? ' active' : ''}`} role="presentation">
+        <li role="presentation">
           <Link to="/review-and-submit" 
               className={this.props.currentUrl === '/review-and-submit' ? ' usa-current' : ''}>
             Review and Submit

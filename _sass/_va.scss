@@ -51,6 +51,12 @@ body .row {
   }
 }
 
+.progress-box {
+  padding: 1rem 2rem;
+  margin: 1.5rem 0  ;
+  border: 1px solid #eee;
+}
+
 .form-section {
   display: none;
 }
@@ -2662,10 +2668,4 @@ html.touchevents {
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
-}
-
-.progress-box {
-  padding: 1rem 2rem;
-  margin: 1.5rem 0  ;
-  border: 1px solid #eee;
 }
