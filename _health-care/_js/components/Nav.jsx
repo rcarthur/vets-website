@@ -8,22 +8,47 @@ class Nav extends React.Component {
     return (
       <ul className="usa-sidenav-list">
         <li className={`tab-title${this.props.currentUrl === '/' || this.props.currentUrl === '/introduction' ? ' active' : ''}`} role="presentation">
-          <Link to="/introduction">Introduction</Link><br/>
+          <Link to="/introduction" 
+              className={this.props.currentUrl === '/' || this.props.currentUrl === '/introduction' ? ' usa-current' : ''}>
+            Introduction
+          </Link>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/personal-information' ? ' active' : ''}`} role="presentation">
-          <Link to="/personal-information">Personal Information</Link><br/>
+          <Link to="/personal-information" 
+              className={this.props.currentUrl === '/personal-information' ? ' usa-current' : ''}>
+            Personal Information
+          </Link>
+          <ul className="usa-sidenav-sub_list">
+            <li>Name and General Information</li>
+            <li>VA-Specific Information</li>
+            <li>Additional Information</li>
+            <li>Demographic Information</li>
+            <li>Veteran Address</li>
+          </ul>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/insurance-information' ? ' active' : ''}`} role="presentation">
-          <Link to="/insurance-information">Insurance Information</Link><br/>
+          <Link to="/insurance-information" 
+              className={this.props.currentUrl === '/insurance-information' ? ' usa-current' : ''}>
+            Insurance Information
+          </Link>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/military-service' ? ' active' : ''}`} role="presentation">
-          <Link to="/military-service">Military Service</Link><br/>
+          <Link to="/military-service" 
+              className={this.props.currentUrl === '/military-service' ? ' usa-current' : ''}>
+            Military Service
+          </Link>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/financial-asssessment' ? ' active' : ''}`} role="presentation">
-          <Link to="/financial-assessment">Financial Assessment</Link><br/>
+          <Link to="/financial-assessment" 
+              className={this.props.currentUrl === '/financial-asssessment' ? ' usa-current' : ''}>
+            Financial Assessment
+          </Link>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/review-and-submit' ? ' active' : ''}`} role="presentation">
-          <Link to="/review-and-submit">Review and Submit</Link><br/>
+          <Link to="/review-and-submit" 
+              className={this.props.currentUrl === '/review-and-submit' ? ' usa-current' : ''}>
+            Review and Submit
+          </Link>
         </li>
       </ul>
     );
