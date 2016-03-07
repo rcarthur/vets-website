@@ -31,12 +31,20 @@ class Nav extends React.Component {
               className={this.props.currentUrl === '/insurance-information' ? ' usa-current' : ''}>
             Insurance Information
           </Link>
+          <ul className="usa-sidenav-sub_list">
+            <li>General Insurance Information</li>
+            <li>Medicare/Medicaid Information</li>
+          </ul>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/military-service' ? ' active' : ''}`} role="presentation">
           <Link to="/military-service" 
               className={this.props.currentUrl === '/military-service' ? ' usa-current' : ''}>
             Military Service
           </Link>
+          <ul className="usa-sidenav-sub_list">
+            <li>Service Information</li>
+            <li>Additional Military Information</li>
+          </ul>
         </li>
         <li className={`tab-title${this.props.currentUrl === '/financial-asssessment' ? ' active' : ''}`} role="presentation">
           <Link to="/financial-assessment" 
@@ -49,6 +57,13 @@ class Nav extends React.Component {
               className={this.props.currentUrl === '/review-and-submit' ? ' usa-current' : ''}>
             Review and Submit
           </Link>
+          <ul className="usa-sidenav-sub_list">
+            <li>Financial Disclosure</li>
+            <li>Spouse Information</li>
+            <li>Child Information</li>
+            <li>Annual Income</li>
+            <li>Deductible Expenses</li>
+          </ul>
         </li>
       </ul>
     );
