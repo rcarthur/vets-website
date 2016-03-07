@@ -8,6 +8,7 @@ import IntroductionPanel from './components/IntroductionPanel.jsx';
 import InsuranceInformationPanel from './components/InsuranceInformationPanel.jsx';
 import MilitaryServicePanel from './components/MilitaryServicePanel.jsx';
 import PersonalInformationPanel from './components/PersonalInformationPanel.jsx';
+import NameAndGeneralInfoSection from './components/personal-information/NameAndGeneralInfoSection';
 import ReviewAndSubmitPanel from './components/ReviewAndSubmitPanel.jsx';
 
 function init() {
@@ -15,7 +16,9 @@ function init() {
     <Router history={hashHistory}>
       <Route path="/" component={HealthCareApp}>
         <Route path="/introduction" component={IntroductionPanel}/>
-        <Route path="/personal-information" component={PersonalInformationPanel}/>
+        <Route path="/personal-information" component={PersonalInformationPanel}>
+          <Route path="/personal-information/name-and-general-info" component={NameAndGeneralInfoSection}/>
+        </Route>
         <Route path="/insurance-information" component={InsuranceInformationPanel}/>
         <Route path="/military-service" component={MilitaryServicePanel}/>
         <Route path="/financial-assessment" component={FinancialAssessmentPanel}/>

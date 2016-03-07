@@ -19,7 +19,12 @@ class Nav extends React.Component {
             Personal Information
           </Link>
           <ul className="usa-sidenav-sub_list">
-            <li>Name and General Information</li>
+            <li>
+              <Link to="/personal-information/name-and-general-info" 
+                className={this.props.currentUrl === '/personal-information/name-and-general-info' ? ' usa-current' : ''}>
+                Name and General Information
+              </Link>
+            </li>
             <li>VA-Specific Information</li>
             <li>Additional Information</li>
             <li>Demographic Information</li>

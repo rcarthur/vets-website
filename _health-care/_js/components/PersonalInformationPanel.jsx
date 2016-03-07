@@ -8,43 +8,17 @@ import VeteranAddressSection from './personal-information/VeteranAddressSection'
 
 class PersonalInformationPanel extends React.Component {
   render() {
+     const children = React.Children.map(this.props.children, (child) => {
+        return React.cloneElement(child,
+          { data: this.props.applicationData.personalInformation.nameAndGeneralInfo,
+            onStateChange: (subfield, update) => {
+                this.props.publishStateChange(['personalInformation', 'nameAndGeneralInfo', subfield], update);
+            }
+      });
+    });
     return (
       <div>
-        <NameAndGeneralInfoSection
-            data={this.props.applicationData.personalInformation.nameAndGeneralInfo}
-            onStateChange={
-              (subfield, update) => {
-                this.props.publishStateChange(['personalInformation', 'nameAndGeneralInfo', subfield], update);
-              }
-            }/>
-        <VAInformationSection
-            data={this.props.applicationData.personalInformation.vaInformation}
-            onStateChange={
-              (subfield, update) => {
-                this.props.publishStateChange(['personalInformation', 'vaInformation', subfield], update);
-              }
-            }/>
-        <AdditionalInformationSection
-            data={this.props.applicationData.personalInformation.additionalInformation}
-            onStateChange={
-              (subfield, update) => {
-                this.props.publishStateChange(['personalInformation', 'additionalInformation', subfield], update);
-              }
-            }/>
-        <DemographicInformationSection
-            data={this.props.applicationData.personalInformation.demographicInformation}
-            onStateChange={
-              (subfield, update) => {
-                this.props.publishStateChange(['personalInformation', 'demographicInformation', subfield], update);
-              }
-            }/>
-        <VeteranAddressSection
-            data={this.props.applicationData.personalInformation.veteranAddress}
-            onStateChange={
-              (subfield, update) => {
-                this.props.publishStateChange(['personalInformation', 'veteranAddress', subfield], update);
-              }
-            }/>
+        {children}
       </div>
     );
   }
