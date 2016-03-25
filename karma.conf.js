@@ -40,7 +40,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'spec/javascripts/**/*.spec.js?(x)': ['webpack', 'sourcemap'],
+      'spec/javascripts/**/*.spec.js?(x)': ['webpack', 'sourcemap', 'coverage'],
       'spec/fixtures/html/**/*.html'   : ['html2js'],
       'spec/fixtures/json/**/*.json'   : ['json_fixtures']
     },
@@ -94,7 +94,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['mocha', 'coverage'],
 
 
     // web server port
