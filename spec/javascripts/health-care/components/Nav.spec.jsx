@@ -8,7 +8,7 @@ import routes from '../../../../_health-care/_js/routes';
 
 class Container extends React.Component {
   render() {
-    return (<Nav currentUrl={this.props.location.pathname}/>);
+    return (<Nav currentUrl={this.props.location.pathname} appRoutes={this.props.route.childRoutes}/>);
   }
 }
 
@@ -132,4 +132,3 @@ describe('<Nav>', () => {
     });
   });
 });
-

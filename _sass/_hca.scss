@@ -57,6 +57,12 @@ body .row {
     &:before {
       background: $color-gray;
     }
+    &.section-complete {
+      &:before{
+        content: "\2714";
+        background: $color-green;
+      }
+    }
     &.section-current {
       h5 {
         font-weight: bold;

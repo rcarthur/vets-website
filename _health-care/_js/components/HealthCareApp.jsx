@@ -342,7 +342,7 @@ class HealthCareApp extends React.Component {
     return (
       <div className="row">
         <div className="medium-4 columns show-for-medium-up">
-          <Nav currentUrl={this.props.location.pathname}/>
+          <Nav currentUrl={this.props.location.pathname} appRoutes={this.props.route.childRoutes}/>
         </div>
         <div className="medium-8 columns">
           <div className="progress-box">
