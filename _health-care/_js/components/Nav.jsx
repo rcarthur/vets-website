@@ -9,9 +9,18 @@ import { Link } from 'react-router';
  * `currentUrl` - String. Specifies the current url.
  */
 class Nav extends React.Component {
+  constructor() {
+    super();
+    this.handleShowPanels = this.handleShowPanels.bind(this);
+    // this.parentElement = this.parentElement.bind(this);
+  }
+
+  handleShowPanels(elementID) {
+    console.log('I work');
+  }
+
   render() {
     const subnavStyles = 'step one wow fadeIn animated';
-    
     const currentUrl = (this.props.currentUrl === '/') ? '/introduction' : this.props.currentUrl;
     const allRoutes = this.props.appRoutes;
     const panels = [];
@@ -19,31 +28,35 @@ class Nav extends React.Component {
 
     panels.push.apply(panels, allRoutes.map((obj) => { return obj.path; }));
 
-    // console.log(panels);
     for (let i = 0; i < panels.length; i++) {
-      completedSections.push(panels[i]);
-      if (currentUrl.indexOf(panels[i]) !== -1) {
+      if (currentUrl === panels[i]) {
         break;
+      } else {
+        // console.log(panels[i]);
+        completedSections.push(panels[i]);
       }
     }
-
-    console.log(completedSections);
 
     // TODO(akainic): change this check once the alias for introduction has been changed
     return (
       <ol className="process hca-process">
-        <li className={`section-complete one
+        <li className={`one
           ${subnavStyles} ${currentUrl.startsWith('/introduction') ? ' section-current' : ''}
-          ${completedSections.indexOf('/introduction') ? ' section-complete' : ''}`}>
+          ${(completedSections.indexOf('/introduction') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Introduction</h5>
           </div>
         </li>
         <li role="presentation" className={`two ${subnavStyles}
         ${currentUrl.startsWith('/personal-information') ? ' section-current' : ''}
-        ${completedSections.indexOf('/personal-information') && currentUrl.startsWith('/personal-information') === false ? ' section-complete' : ''}`}>
+        ${(completedSections.indexOf('/personal-information/veteran-address') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Personal Information</h5>
+            <a className={`section-edit-link
+            ${(completedSections.indexOf('/personal-information/veteran-address') === -1) ? ' section-incomplete' : ''}`}
+                onClick={this.handleShowPanels} >
+                Edit section
+            </a>
             <ul className="usa-sidenav-sub_list">
               <li>
                 <Link to="/personal-information/name-and-general-information" activeClassName="usa-current">
@@ -73,9 +86,15 @@ class Nav extends React.Component {
             </ul>
           </div>
         </li>
-        <li role="presentation" className={`three ${subnavStyles} ${currentUrl.startsWith('/insurance-information') ? ' section-current' : ''}`}>
+        <li role="presentation" className={`three ${subnavStyles}
+        ${currentUrl.startsWith('/insurance-information') ? ' section-current' : ''}
+        ${(completedSections.indexOf('/insurance-information/medicare-medicaid') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Insurance Information</h5>
+            <a className={`section-edit-link
+              ${(completedSections.indexOf('/insurance-information/medicare-medicaid') === -1) ? ' section-incomplete' : ''}`} href="">
+              Edit section
+            </a>
             <ul className="usa-sidenav-sub_list">
               <li>
                 <Link to="/insurance-information/general" activeClassName="usa-current">
@@ -90,9 +109,15 @@ class Nav extends React.Component {
             </ul>
           </div>
         </li>
-        <li role="presentation" className={`four ${subnavStyles} ${currentUrl.startsWith('/military-service') ? ' section-current' : ''}`}>
+        <li role="presentation" className={`four ${subnavStyles}
+        ${currentUrl.startsWith('/military-service') ? ' section-current' : ''}
+        ${(completedSections.indexOf('/military-service/additional-information') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Military Service</h5>
+            <a className={`section-edit-link
+              ${(completedSections.indexOf('/military-service/additional-information') === -1) ? ' section-incomplete' : ''}`} href="">
+              Edit Completed section
+            </a>
             <ul className="usa-sidenav-sub_list">
               <li>
                 <Link to="/military-service/service-information" activeClassName="usa-current">
@@ -107,7 +132,9 @@ class Nav extends React.Component {
             </ul>
           </div>
         </li>
-        <li role="presentation" className={`five ${subnavStyles} ${currentUrl.startsWith('/financial-assessment') ? ' section-current' : ''}`}>
+        <li role="presentation" className={`five ${subnavStyles}
+        ${currentUrl.startsWith('/financial-assessment') ? ' section-current' : ''}
+        ${(completedSections.indexOf('/financial-assessment/deductible-expenses') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Financial Assessment</h5>
             <ul className="usa-sidenav-sub_list">
@@ -139,7 +166,9 @@ class Nav extends React.Component {
             </ul>
           </div>
         </li>
-        <li role="presentation" className={`six last ${subnavStyles} ${currentUrl.startsWith('/review-and-submit') ? ' section-current' : ''}`}>
+        <li role="presentation" className={`six last ${subnavStyles}
+        ${currentUrl.startsWith('/review-and-submit') ? ' section-current' : ''}
+        ${(completedSections.indexOf('/review-and-submit') !== -1) ? ' section-complete' : ''}`}>
           <div>
             <h5>Review and Submit</h5>
           </div>

@@ -51,6 +51,11 @@ body .row {
     h5 {
       color: $color-gray;
     }
+    .section-edit-link{
+      &.section-incomplete{
+        display: none;
+      }
+    }
     li {
       display: none;
     }
@@ -63,6 +68,9 @@ body .row {
         background: $color-green;
       }
     }
+    &.edit-section{
+      color: orange;
+    }
     &.section-current {
       h5 {
         font-weight: bold;
@@ -73,6 +81,13 @@ body .row {
         &.sub-section-current {
           font-weight: bold;
           color: $color-primary;
+        }
+        a{
+          text-decoration: none;
+          background: none;
+          padding-left: 0;
+          pointer-events: none;
+           cursor: default;
         }
       }
       &:before {

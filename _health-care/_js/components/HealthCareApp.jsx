@@ -19,6 +19,7 @@ class HealthCareApp extends React.Component {
     this.publishStateChange = this.publishStateChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getUrl = this.getUrl.bind(this);
     this.getExternalData = this.getExternalData.bind(this);
@@ -80,6 +81,9 @@ class HealthCareApp extends React.Component {
             emailConfirmation: null,
             homePhone: null,
             mobilePhone: null
+          },
+          'completion': {
+            status: ''
           }
         },
 
@@ -257,6 +261,16 @@ class HealthCareApp extends React.Component {
     });
   }
 
+  handleUpdate() {
+    const sectionTitle = this.props.routes[1].path.split('/')[1];
+    const sectionPath = [];
+    const newSectionData = { status: 'complete' };
+
+    sectionPath.push.apply(sectionPath, [sectionTitle, 'completion']);
+
+    this.publishStateChange(sectionPath, newSectionData);
+  }
+
   handleBack() {
     hashHistory.push(this.getUrl('back'));
     if (document.getElementsByClassName('progress-box').length > 0) {
@@ -330,6 +344,17 @@ class HealthCareApp extends React.Component {
           {nextButton}
         </div>
       );
+    } else if (this.props.location.pathname === '/personal-information/veteran-address') {
+      buttons = (
+        <div>
+          <ProgressButton
+              onButtonClick={(update) => {this.handleUpdate('street', update);}}
+              buttonText={`Continue to Other ${nextSectionText}`}
+              buttonClass={'usa-button-primary'}
+              afterText={'»'}/>
+          {backButton}
+        </div>
+      );
     } else {
       buttons = (
         <div>
@@ -342,7 +367,10 @@ class HealthCareApp extends React.Component {
     return (
       <div className="row">
         <div className="medium-4 columns show-for-medium-up">
-          <Nav currentUrl={this.props.location.pathname} appRoutes={this.props.route.childRoutes}/>
+          <Nav
+              currentUrl={this.props.location.pathname}
+              appRoutes={this.props.route.childRoutes}
+              appData={this.state.applicationData}/>
         </div>
         <div className="medium-8 columns">
           <div className="progress-box">
