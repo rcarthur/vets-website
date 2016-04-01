@@ -8,7 +8,14 @@ import routes from '../../../../_health-care/_js/routes';
 
 class Container extends React.Component {
   render() {
-    return (<Nav currentUrl={this.props.location.pathname} appRoutes={this.props.route.childRoutes}/>);
+    const stateData = {
+      introduction: { completion: { status: '' } },
+      'personal-information': { completion: { status: '' } },
+      'financial-assessment': { completion: { status: '' } },
+      'insurance-information': { completion: { status: '' } },
+      'military-service': { completion: { status: '' } },
+    };
+    return (<Nav currentUrl={this.props.location.pathname} appData={stateData}/>);
   }
 }
 
@@ -23,11 +30,13 @@ describe('<Nav>', () => {
       consoleStub.restore();
     });
 
+    // TODO(crew): Why in the world does this not work?!?!
     xit('currentUrl is required', () => {
       SkinDeep.shallowRender(<Nav/>);
       sinon.assert.calledWithMatch(consoleStub, /Required prop `currentUrl` was not specified in `Nav`/);
     });
 
+    // TODO(crew): Why in the world does this not work?!?!
     xit('currentUrl must be a string', () => {
       SkinDeep.shallowRender(<Nav currentUrl/>);
       sinon.assert.calledWithMatch(consoleStub, /Invalid prop `currentUrl` of type `boolean` supplied to `Nav`, expected `string`/);
@@ -67,67 +76,67 @@ describe('<Nav>', () => {
       expect(activeSubSection).to.have.lengthOf(1);
     };
 
-    xit('/introduction', () => {
+    it('/introduction', () => {
       expectActiveSection(nav, '/introduction');
     });
 
-    xit('/personal-information/name-and-general-information', () => {
+    it('/personal-information/name-and-general-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/personal-information/name-and-general-information');
     });
 
-    xit('/personal-information/va-information', () => {
+    it('/personal-information/va-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/personal-information/va-information');
     });
 
-    xit('/personal-information/additional-information', () => {
+    it('/personal-information/additional-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/personal-information/additional-information');
     });
 
-    xit('/personal-information/demographic-information', () => {
+    it('/personal-information/demographic-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/personal-information/demographic-information');
     });
 
-    xit('/personal-information/veteran-address', () => {
+    it('/personal-information/veteran-address', () => {
       expectActiveSectionForNavAndSubNav(nav, '/personal-information/veteran-address');
     });
 
-    xit('/insurance-information/general', () => {
+    it('/insurance-information/general', () => {
       expectActiveSectionForNavAndSubNav(nav, '/insurance-information/general');
     });
 
-    xit('/insurance-information/medicare-medicaid', () => {
+    it('/insurance-information/medicare-medicaid', () => {
       expectActiveSectionForNavAndSubNav(nav, '/insurance-information/medicare-medicaid');
     });
 
-    xit('/military-service/service-information', () => {
+    it('/military-service/service-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/military-service/service-information');
     });
 
-    xit('/military-service/additional-information', () => {
+    it('/military-service/additional-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/military-service/additional-information');
     });
 
-    xit('/financial-assessment/financial-disclosure', () => {
+    it('/financial-assessment/financial-disclosure', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/financial-disclosure');
     });
 
-    xit('/financial-assessment/spouse-information', () => {
+    it('/financial-assessment/spouse-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/spouse-information');
     });
 
-    xit('/financial-assessment/child-information', () => {
+    it('/financial-assessment/child-information', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/child-information');
     });
 
-    xit('/financial-assessment/annual-income', () => {
+    it('/financial-assessment/annual-income', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/annual-income');
     });
 
-    xit('/financial-assessment/deductible-expenses', () => {
+    it('/financial-assessment/deductible-expenses', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/deductible-expenses');
     });
 
-    xit('/review-and-submit', () => {
+    it('/review-and-submit', () => {
       expectActiveSection(nav, '/review-and-submit');
     });
   });

@@ -19,14 +19,18 @@ class HealthCareApp extends React.Component {
     this.publishStateChange = this.publishStateChange.bind(this);
     this.handleBack = this.handleBack.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
-    this.handleUpdate = this.handleUpdate.bind(this);
+    this.handleSectionComplete = this.handleSectionComplete.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getUrl = this.getUrl.bind(this);
     this.getExternalData = this.getExternalData.bind(this);
 
     this.state = {
       applicationData: {
-        introduction: {},
+        introduction: {
+          completion: {
+            status: ''
+          }
+        },
 
         'personal-information': {
           'name-and-general-information': {
@@ -82,7 +86,7 @@ class HealthCareApp extends React.Component {
             homePhone: null,
             mobilePhone: null
           },
-          'completion': {
+          completion: {
             status: ''
           }
         },
@@ -145,6 +149,9 @@ class HealthCareApp extends React.Component {
             deductibleFuneralExpenses: null,
             deductibleEducationExpenses: null
           },
+          completion: {
+            status: ''
+          }
         },
 
         'insurance-information': {
@@ -161,6 +168,9 @@ class HealthCareApp extends React.Component {
               day: null,
               year: null
             }
+          },
+          completion: {
+            status: ''
           }
         },
         'military-service': {
@@ -188,6 +198,9 @@ class HealthCareApp extends React.Component {
             exposedToRadiation: false,
             radiumTreatments: false,
             campLejeune: false
+          },
+          completion: {
+            status: ''
           }
         }
       }
@@ -261,14 +274,15 @@ class HealthCareApp extends React.Component {
     });
   }
 
-  handleUpdate() {
+  handleSectionComplete() {
     const sectionTitle = this.props.routes[1].path.split('/')[1];
     const sectionPath = [];
     const newSectionData = { status: 'complete' };
 
     sectionPath.push.apply(sectionPath, [sectionTitle, 'completion']);
-
     this.publishStateChange(sectionPath, newSectionData);
+
+    this.handleContinue();
   }
 
   handleBack() {
@@ -307,6 +321,7 @@ class HealthCareApp extends React.Component {
     // Check which section the user is on and render the correct ProgressButtons.
     const lastSectionText = (this.getUrl('back')) ? this.getUrl('back').split('/').slice(-1)[0].replace(/-/g, ' ') : '';
     const nextSectionText = (this.getUrl('next')) ? this.getUrl('next').split('/').slice(-1)[0].replace(/-/g, ' ') : '';
+    const currentPath = this.props.location.pathname;
 
     const backButton = (
       <ProgressButton
@@ -316,9 +331,17 @@ class HealthCareApp extends React.Component {
           beforeText={'«'}/>
     );
 
-    const nextButton = (
+    const panelCompleteButton = (
       <ProgressButton
           onButtonClick={this.handleContinue}
+          buttonText={`Continue to ${nextSectionText}`}
+          buttonClass={'usa-button-primary'}
+          afterText={'»'}/>
+    );
+
+    const sectionCompleteButton = (
+      <ProgressButton
+          onButtonClick={this.handleSectionComplete}
           buttonText={`Continue to ${nextSectionText}`}
           buttonClass={'usa-button-primary'}
           afterText={'»'}/>
@@ -331,34 +354,33 @@ class HealthCareApp extends React.Component {
           buttonClass={'usa-button-primary'}/>
     );
 
-    if (this.props.location.pathname === '/review-and-submit') {
+    if (currentPath === '/review-and-submit') {
       buttons = (
         <div>
           {submitButton}
           {backButton}
         </div>
       );
-    } else if (this.props.location.pathname === '/introduction') {
+    } else if (currentPath === '/introduction') {
       buttons = (
         <div>
-          {nextButton}
+          {sectionCompleteButton}
         </div>
       );
-    } else if (this.props.location.pathname === '/personal-information/veteran-address') {
+    } else if ((currentPath === '/personal-information/veteran-address') ||
+      (currentPath === '/insurance-information/medicare-medicaid') ||
+      (currentPath === '/military-service/additional-information') ||
+      (currentPath === '/financial-assessment/deductible-expenses')) {
       buttons = (
         <div>
-          <ProgressButton
-              onButtonClick={(update) => {this.handleUpdate('street', update);}}
-              buttonText={`Continue to Other ${nextSectionText}`}
-              buttonClass={'usa-button-primary'}
-              afterText={'»'}/>
+          {sectionCompleteButton}
           {backButton}
         </div>
       );
     } else {
       buttons = (
         <div>
-          {nextButton}
+          {panelCompleteButton}
           {backButton}
         </div>
       );
@@ -368,8 +390,7 @@ class HealthCareApp extends React.Component {
       <div className="row">
         <div className="medium-4 columns show-for-medium-up">
           <Nav
-              currentUrl={this.props.location.pathname}
-              appRoutes={this.props.route.childRoutes}
+              currentUrl={currentPath}
               appData={this.state.applicationData}/>
         </div>
         <div className="medium-8 columns">
