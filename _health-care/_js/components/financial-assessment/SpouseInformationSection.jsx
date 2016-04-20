@@ -17,7 +17,7 @@ import { updateReviewStatus, veteranUpdateField, updateSpouseAddress } from '../
 /**
  * Props:
  * `sectionComplete` - Boolean. Marks the section as completed. Provides styles for completed sections.
- * `reviewSection` - Boolean. Hides components that are only needed for ReviewAndSubmitSection.
+ * `reviewSection` - Boolean. Hides components that are only needed for ReviewSection.
  */
 class SpouseInformationSection extends React.Component {
   render() {

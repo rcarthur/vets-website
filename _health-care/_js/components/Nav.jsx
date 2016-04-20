@@ -119,7 +119,7 @@ class Nav extends React.Component {
           </div>
         </li>
         <li role="presentation" className={`six last ${subnavStyles}
-         ${determinePanelStyles('/review-and-submit', '/review-and-submit')}`}>
+         ${determinePanelStyles('/review-application', '/review-application')}`}>
           <div>
             <h5>Review and Submit</h5>
           </div>

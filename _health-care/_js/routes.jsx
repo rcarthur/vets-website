@@ -12,7 +12,7 @@ import InsuranceInformationSection from './components/insurance-information/Insu
 import IntroductionSection from './components/IntroductionSection.jsx';
 import MedicareMedicaidSection from './components/insurance-information/MedicareMedicaidSection';
 import NameAndGeneralInfoSection from './components/personal-information/NameAndGeneralInfoSection';
-import ReviewAndSubmitSection from './components/ReviewAndSubmitSection.jsx';
+import ReviewSection from './components/ReviewSection.jsx';
 import ServiceInformationSection from './components/military-service/ServiceInformationSection';
 import SpouseInformationSection from './components/financial-assessment/SpouseInformationSection';
 import VAInformationSection from './components/personal-information/VAInformationSection';
@@ -91,9 +91,9 @@ const routes = [
 
   // Review and Submit route.
   <Route
-      component={ReviewAndSubmitSection}
-      key="/review-and-submit"
-      path="/review-and-submit"/>
+      component={ReviewSection}
+      key="/review-application"
+      path="/review-application"/>
 ];
 
 export default routes;

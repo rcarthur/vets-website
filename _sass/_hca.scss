@@ -127,11 +127,31 @@ body .row {
 }
 
 .review {
+  thead {
+    tr {
+      background: $color-primary-darkest !important;
+      color: $white;
+      th {
+        border: 1px solid transparent;
+        &.edit-cell {
+          text-align: right;
+        }
+        button {
+          max-width: 7rem;
+        }
+        h4 {
+          color: $white;
+        }
+      }
+    }
+  }
   tbody {
     tr {
       td {
+        border: 1px solid $white;
         &:first-child {
-          color: $color-primary-darker;
+          // color: $color-primary-darker;
+          background: $color-primary-alt-lightest;
         }
       }
     }

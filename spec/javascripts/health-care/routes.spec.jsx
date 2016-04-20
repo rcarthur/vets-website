@@ -14,7 +14,7 @@ import InsuranceInformationSection from '../../../_health-care/_js/components/in
 import IntroductionSection from '../../../_health-care/_js/components/IntroductionSection.jsx';
 import MedicareMedicaidSection from '../../../_health-care/_js/components/insurance-information/MedicareMedicaidSection';
 import NameAndGeneralInfoSection from '../../../_health-care/_js/components/personal-information/NameAndGeneralInfoSection';
-import ReviewAndSubmitSection from '../../../_health-care/_js/components/ReviewAndSubmitSection.jsx';
+import ReviewSection from '../../../_health-care/_js/components/ReviewSection.jsx';
 import ServiceInformationSection from '../../../_health-care/_js/components/military-service/ServiceInformationSection';
 import SpouseInformationSection from '../../../_health-care/_js/components/financial-assessment/SpouseInformationSection';
 import VAInformationSection from '../../../_health-care/_js/components/personal-information/VAInformationSection';
@@ -133,9 +133,9 @@ describe('routes', () => {
       expect(tree.dive(['RouterContext']).subTree(getName(DeductibleExpensesSection))).to.be.an('object');
     });
 
-    it('/review-and-submit', () => {
-      history.replace('/review-and-submit');
-      expect(tree.dive(['RouterContext']).subTree(getName(ReviewAndSubmitSection))).to.be.an('object');
+    it('/review-application', () => {
+      history.replace('/review-application');
+      expect(tree.dive(['RouterContext']).subTree(getName(ReviewSection))).to.be.an('object');
     });
   });
 });

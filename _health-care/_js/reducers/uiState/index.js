@@ -25,7 +25,7 @@ const ui = {
     '/financial-assessment/child-information': false,
     '/financial-assessment/annual-income': false,
     '/financial-assessment/deductible-expenses': false,
-    '/review-and-submit': false
+    '/review-application': false
   }
 };
 

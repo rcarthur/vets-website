@@ -117,7 +117,7 @@ class HealthCareApp extends React.Component {
           buttonClass={'usa-button-primary'}/>
     );
 
-    if (this.props.location.pathname === '/review-and-submit') {
+    if (this.props.location.pathname === '/review-application') {
       buttons = (
         <div>
           {submitButton}

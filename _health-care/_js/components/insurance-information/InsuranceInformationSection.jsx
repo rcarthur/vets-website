@@ -9,7 +9,7 @@ import { veteranUpdateField, ensureFieldsInitialized, updateReviewStatus } from 
 /**
  * Props:
  * `sectionComplete` - Boolean. Marks the section as completed. Provides styles for completed sections.
- * `reviewSection` - Boolean. Hides components that are only needed for ReviewAndSubmitSection.
+ * `reviewSection` - Boolean. Hides components that are only needed for ReviewSection.
  */
 class InsuranceInformationSection extends React.Component {
   // TODO(awong): Pull this out into a model.

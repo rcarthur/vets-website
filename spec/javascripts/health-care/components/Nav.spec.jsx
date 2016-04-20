@@ -134,8 +134,8 @@ describe('<Nav>', () => {
       expectActiveSectionForNavAndSubNav(nav, '/financial-assessment/deductible-expenses');
     });
 
-    it('/review-and-submit', () => {
-      expectActiveSection(nav, '/review-and-submit');
+    it('/review-application', () => {
+      expectActiveSection(nav, '/review-application');
     });
   });
 });

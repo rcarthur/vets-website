@@ -45,7 +45,7 @@ export function pathToData(state, path) {
     case '/financial-assessment/deductible-expenses':
       return state.deductibleExpenses;
 
-    case '/review-and-submit':
+    case '/review-application':
       return {};
 
     default:
