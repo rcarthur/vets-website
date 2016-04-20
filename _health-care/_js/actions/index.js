@@ -1,6 +1,7 @@
 export const ENSURE_FIELDS_INITIALIZED = 'ENSURE_FIELDS_INITIALIZED';
 export const VETERAN_FIELD_UPDATE = 'VETERAN_FIELD_UPDATE';
 export const UPDATE_COMPLETION_STATUS = 'UPDATE_COMPLETION_STATUS';
+export const UPDATE_COMPLETION_STATUS_TO_EDIT = 'UPDATE_COMPLETION_STATUS_TO_EDIT';
 export const UPDATE_REVIEW_STATUS = 'UPDATE_REVIEW_STATUS';
 export const UPDATE_SPOUSE_ADDRESS = 'UPDATE_SPOUSE_ADDRESS';
 export const UPDATE_SUBMISSION_STATUS = 'UPDATE_SUBMISSION_STATUS';
@@ -23,6 +24,13 @@ export function veteranUpdateField(propertyPath, value) {
 export function updateCompletionStatus(path) {
   return {
     type: UPDATE_COMPLETION_STATUS,
+    path
+  };
+}
+
+export function updateCompletionStatusToEdit(path) {
+  return {
+    type: UPDATE_COMPLETION_STATUS_TO_EDIT,
     path
   };
 }

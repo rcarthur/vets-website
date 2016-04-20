@@ -129,8 +129,8 @@ body .row {
 .review {
   thead {
     tr {
-      background: $color-primary-darkest !important;
-      color: $white;
+      background: $color-gray-light !important;
+      // color: $white;
       th {
         border: 1px solid transparent;
         &.edit-cell {
@@ -140,7 +140,7 @@ body .row {
           max-width: 7rem;
         }
         h4 {
-          color: $white;
+          // color: $white;
         }
       }
     }

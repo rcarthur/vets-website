@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import lodashDeep from 'lodash-deep';
 
-import { UPDATE_COMPLETION_STATUS, UPDATE_REVIEW_STATUS, UPDATE_SUBMISSION_STATUS } from '../../actions';
+import { UPDATE_COMPLETION_STATUS, UPDATE_COMPLETION_STATUS_TO_EDIT, UPDATE_REVIEW_STATUS, UPDATE_SUBMISSION_STATUS } from '../../actions';
 
 // Add deep object manipulation routines to lodash.
 _.mixin(lodashDeep);
@@ -10,8 +10,8 @@ _.mixin(lodashDeep);
 const ui = {
   applicationSubmitted: false,
   completedSections: {
-    '/introduction': false,
-    '/personal-information/name-and-general-information': false,
+    '/introduction': true,
+    '/personal-information/name-and-general-information': true,
     '/personal-information/va-information': false,
     '/personal-information/additional-information': false,
     '/personal-information/demographic-information': false,
@@ -35,6 +35,11 @@ function uiState(state = ui, action) {
     case UPDATE_COMPLETION_STATUS:
       newState = Object.assign({}, state);
       _.set(newState.completedSections, action.path, true);
+      return newState;
+
+    case UPDATE_COMPLETION_STATUS_TO_EDIT:
+      newState = Object.assign({}, state);
+      _.set(newState.completedSections, action.path, false);
       return newState;
 
     case UPDATE_REVIEW_STATUS:

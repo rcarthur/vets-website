@@ -34,45 +34,6 @@ class ReviewSection extends React.Component {
       );
     } else {
       content = (<div>
-        <p>Please ensure all of your information is correct before submitting your application.</p>
-        <table className="review">
-          <thead>
-            <tr>
-              <th scope="col"><h4>Veteran's Name</h4></th>
-              <th scope="col" className="edit-cell"><button className="usa-button-outline-inverse" type="button">Edit</button></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Veteran Name:</td>
-              <td>Courtney Eimerman-Wallace</td>
-            </tr>
-            <tr>
-              <td>Mother's Maiden Name:</td>
-              <td>Thompson</td>
-            </tr>
-            <tr>
-              <td>Social Security Number:</td>
-              <td>123-09-0987</td>
-            </tr>
-            <tr>
-              <td>Gender:</td>
-              <td>Female</td>
-            </tr>
-            <tr>
-              <td>Date of Birth:</td>
-              <td>03/09/1988</td>
-            </tr>
-            <tr>
-              <td>Place of Birth:</td>
-              <td>Augusta, GA</td>
-            </tr>
-            <tr>
-              <td>Current Marital Status:</td>
-              <td>Married</td>
-            </tr>
-          </tbody>
-        </table>
         <NameAndGeneralInfoSection reviewSection/>
         <VAInformationSection reviewSection/>
         <AdditionalInformationSection reviewSection/>

@@ -12,7 +12,7 @@ import SocialSecurityNumber from '../questions/SocialSecurityNumber';
 import State from '../questions/State';
 import { maritalStatuses } from '../../utils/options-for-select.js';
 import { isNotBlank } from '../../utils/validations';
-import { updateReviewStatus, veteranUpdateField } from '../../actions';
+import { updateCompletionStatus, updateCompletionStatusToEdit, updateReviewStatus, veteranUpdateField } from '../../actions';
 
 /**
  * Props:
@@ -20,43 +20,152 @@ import { updateReviewStatus, veteranUpdateField } from '../../actions';
  * `reviewSection` - Boolean. Hides components that are only needed for ReviewSection.
  */
 class NameAndGeneralInfoSection extends React.Component {
+  constructor() {
+    super();
+    this.onButtonClick = this.onButtonClick.bind(this);
+  }
+
+  onButtonClick() {
+    alert('I am working');
+  }
+
   render() {
     let content;
     let editButton;
 
-    if (this.props.isSectionComplete && this.props.reviewSection) {
-      content = (<table className="review usa-table-borderless">
-        <tbody>
-          <tr>
-            <td>Veteran Name:</td>
-            <td>{this.props.data.fullName.first} {this.props.data.fullName.middle} {this.props.data.fullName.last} {this.props.data.fullName.suffix}</td>
-          </tr>
-          <tr>
-            <td>Mother's Maiden Name:</td>
-            <td>{this.props.data.mothersMaidenName}</td>
-          </tr>
-          <tr>
-            <td>Social Security Number:</td>
-            <td>{this.props.data.socialSecurityNumber}</td>
-          </tr>
-          <tr>
-            <td>Gender:</td>
-            <td>{this.props.data.gender}</td>
-          </tr>
-          <tr>
-            <td>Date of Birth:</td>
-            <td>{this.props.data.dateOfBirth.month}/{this.props.data.dateOfBirth.day}/{this.props.data.dateOfBirth.year}</td>
-          </tr>
-          <tr>
-            <td>Place of Birth:</td>
-            <td>{this.props.data.cityOfBirth} {this.props.data.stateOfBirth}</td>
-          </tr>
-          <tr>
-            <td>Current Marital Status:</td>
-            <td>{this.props.data.maritalStatus}</td>
-          </tr>
-        </tbody>
-      </table>);
+    if (this.props.reviewSection) {
+      if (this.props.isSectionComplete) {
+        content = (<table className="review">
+          <thead>
+            <tr>
+              <th scope="col"><h4>Veteran's Name</h4></th>
+              <th scope="col" className="edit-cell">
+                <button
+                    className="usa-button-outline"
+                    type="button"
+                    onClick={this.props.editData}>
+                    Edit
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Veteran Name:</td>
+              <td>{this.props.data.fullName.first} {this.props.data.fullName.middle} {this.props.data.fullName.last} {this.props.data.fullName.suffix}</td>
+            </tr>
+            <tr>
+              <td>Mother's Maiden Name:</td>
+              <td>{this.props.data.mothersMaidenName}</td>
+            </tr>
+            <tr>
+              <td>Social Security Number:</td>
+              <td>{this.props.data.socialSecurityNumber}</td>
+            </tr>
+            <tr>
+              <td>Gender:</td>
+              <td>{this.props.data.gender}</td>
+            </tr>
+            <tr>
+              <td>Date of Birth:</td>
+              <td>{this.props.data.dateOfBirth.month}/{this.props.data.dateOfBirth.day}/{this.props.data.dateOfBirth.year}</td>
+            </tr>
+            <tr>
+              <td>Place of Birth:</td>
+              <td>{this.props.data.cityOfBirth} {this.props.data.stateOfBirth}</td>
+            </tr>
+            <tr>
+              <td>Current Marital Status:</td>
+              <td>{this.props.data.maritalStatus}</td>
+            </tr>
+          </tbody>
+        </table>);
+      } else {
+        content = (<div>
+          <table className="review">
+            <thead>
+              <tr>
+                <th scope="col"><h4>Veteran's Name</h4></th>
+                <th scope="col" className="edit-cell">
+                  <button
+                      className="usa-button-outline"
+                      type="button"
+                      onClick={this.props.editData}>
+                      Edit
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Veteran Name:</td>
+                <td>
+                  <FullName required
+                      value={this.props.data.fullName}
+                      onUserInput={(update) => {this.props.onStateChange('fullName', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Mother's Maiden Name:</td>
+                <td>
+                  <ErrorableTextInput value={this.props.data.mothersMaidenName}
+                      onValueChange={(update) => {this.props.onStateChange('mothersMaidenName', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Social Security Number:</td>
+                <td>
+                  <SocialSecurityNumber required
+                      ssn={this.props.data.socialSecurityNumber}
+                      onValueChange={(update) => {this.props.onStateChange('socialSecurityNumber', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Gender:</td>
+                <td>
+                  <Gender required
+                      value={this.props.data.gender}
+                      onUserInput={(update) => {this.props.onStateChange('gender', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Date of Birth:</td>
+                <td>
+                  <DateInput required
+                      day={this.props.data.dateOfBirth.day}
+                      month={this.props.data.dateOfBirth.month}
+                      year={this.props.data.dateOfBirth.year}
+                      onValueChange={(update) => {this.props.onStateChange('dateOfBirth', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Place of Birth:</td>
+                <td>
+                  <ErrorableTextInput label="City"
+                      value={this.props.data.cityOfBirth}
+                      onValueChange={(update) => {this.props.onStateChange('cityOfBirth', update);}}/>
+                  <State value={this.props.data.stateOfBirth} onUserInput={(update) => {this.props.onStateChange('stateOfBirth', update);}}/>
+                </td>
+              </tr>
+              <tr>
+                <td>Current Marital Status:</td>
+                <td>
+                  <ErrorableSelect required
+                      errorMessage={isNotBlank(this.props.data.maritalStatus) ? undefined : 'Please select a marital status'}
+                      options={maritalStatuses}
+                      value={this.props.data.maritalStatus}
+                      onValueChange={(update) => {this.props.onStateChange('maritalStatus', update);}}/>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+        <button
+            type="button"
+            onClick={this.props.saveData}>
+            Update
+        </button>
+        </div>);
+      }
     } else {
       content = (<div>
         <div className="input-section">
@@ -126,6 +235,12 @@ function mapDispatchToProps(dispatch) {
     },
     onUIStateChange: (update) => {
       dispatch(updateReviewStatus(['/personal-information/name-and-general-information'], update));
+    },
+    editData: () => {
+      dispatch(updateCompletionStatusToEdit(['/personal-information/name-and-general-information']));
+    },
+    saveData: () => {
+      dispatch(updateCompletionStatus(['/personal-information/name-and-general-information']));
     }
   };
 }
