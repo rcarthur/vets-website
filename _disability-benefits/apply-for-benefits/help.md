@@ -52,7 +52,7 @@ Additionally, accredited representatives can help you gather evidence and can su
 
 #### Is there a cost?
 
-Many VSOs provide their services free of charge, though they may request reimbursement for unusual expenses. Unlike VSOs, VA-accredited claims agents and attorneys may charge for their services. If you believe you were charged an unreasonable fee by a claims agent or attorney, see How to Challenge a Fee.
+Many VSOs provide their services free of charge, though they may request reimbursement for unusual expenses. Unlike VSOs, VA-accredited claims agents and attorneys may charge for their services. If you believe you were charged an unreasonable fee by a claims agent or attorney, see How to Challenge a Fee. Unless you have filed an appeal, it is illegal in almost every case for any representative to charge you for legal services, other than administrative costs. 
 
 <hr>
 
