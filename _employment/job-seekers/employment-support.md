@@ -30,11 +30,3 @@ More private-sector businesses are committing each day to hire Veterans and mili
 If you own your own business or want to start a company, VA, the [Small Business Administration Boots to Business program](https://www.sba.gov/offices/headquarters/ovbd/resources/160511), and organizations like [Syracuse University’s Institute for Veterans and Military Families](http://vets.syr.edu/education/) offer mentorship, counseling, and training.
 
 If you are out of work, you may be eligible for [unemployment support](http://careeronestop.org/site/american-job-center.aspx), which is handled by the state in which you work.
-
-<<<<<<< 8b33ee8fb9e556cb89edeb4058dfbce363c2e01b
-=======
-</div>
-</div>
-</div>
-
->>>>>>> Migrating employment, disability benefits piano keys. closes #2249
