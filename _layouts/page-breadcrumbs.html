@@ -1,7 +1,6 @@
 {% include header.html %}
 
 <div id="content" class="interior {{ page.id }}">
-  {% include breadcrumbs.html %}
   
   {% case page.template %}
     {% when 'L2-section-landing' %}
@@ -21,6 +20,9 @@
 
     {% when '7-get-page' %}
       {{ content }}
+
+    {% when '3-panel-filters' %}
+      {% include 3-panel-filters.html %}  
     
   {% else %}
     {{ content }}
